@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gray: #998f8f;
+  --color-darkGray: #353335;
+  --color-orange: #f46c38;
+  --color-green: #c5ff41;
+}
+
+section {
+  width: 100%;
+  padding: 100px 0;
+}
+.container {
+  padding: 0 20px;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+* {
+  font-family: "Poppins", "Poppins Placeholder", sans-serif;
+}
+h1,
+.h1 {
+  font-size: 110px;
+  line-height: 1;
+}
+h2,
+.h2 {
+  font-size: 90px;
+  line-height: 1;
+}
+h3,
+.h3 {
+  font-size: 40px;
+}
+h4,
+.h4 {
+  font-size: 36px;
+}
+h5,
+.h5 {
+  font-size: 24px;
+}
+h6,
+.h6 {
+  font-size: 20px;
+}
+p {
+  font-size: 18px;
+}
+.small {
+  font-size: 16px;
+}
+p {
+  color: var(--color-gray);
+}
+
+.no-padding {
+  padding: 0;
+}
+.no-padding-top {
+  padding-top: 0;
+}
+.no-padding-bottom {
+  padding-bottom: 0;
+}
