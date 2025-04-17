@@ -4,6 +4,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Tools from "@/components/Tools";
 import ContactUs from "@/components/ContactUs";
+import Image from "next/image";
 
 export default function Index() {
   return (
@@ -16,8 +17,10 @@ export default function Index() {
               <div className="leftContent w-[30%]">
                 <div className="stickyCard sticky bg-white  top-[50px] px-[20px] py-[30px] shadow-lg text-center rounded-lg">
                   <div className="max-w-[240px] max-h-[284px] w-full h-full rounded-lg overflow-hidden mx-auto mb-[20px]">
-                    <img
-                      src="/profile.jpg"
+                    <Image
+                      width={1000}
+                      height={1000}
+                      src="/developer.png"
                       alt="Profile Image"
                       className="w-full h-full object-cover"
                     />
