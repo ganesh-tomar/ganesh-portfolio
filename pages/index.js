@@ -27,8 +27,7 @@ export default function Index() {
                   </div>
                   <h3 className="text-[36px] font-semibold">Ganesh Thakur</h3>
                   <p className="text-gray-600 mt-2">
-                    A Software Engineer who has developed countless innovative
-                    solutions.
+                    Turning ideas into sleek, high-performance web experiences.
                   </p>
                   <div className="flex justify-center gap-4 mt-4">
                     <a href="#" className="text-blue-500">

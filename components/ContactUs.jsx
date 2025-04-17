@@ -1,28 +1,87 @@
-import React from "react";
+import React, { useRef } from "react";
+// import emailjs from "@emailjs/browser";
 
 export default function ContactUs() {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    // emailjs
+    //   .sendForm(
+    //     "your_service_id", // Replace with your EmailJS service ID
+    //     "your_template_id", // Replace with your EmailJS template ID
+    //     form.current,
+    //     "your_public_key" // Replace with your EmailJS public key
+    //   )
+    //   .then(
+    //     (result) => {
+    //       alert("Message sent successfully!");
+    //       form.current.reset();
+    //     },
+    //     (error) => {
+    //       alert("Failed to send message, please try again.");
+    //     }
+    //   );
+  };
+
   return (
     <section className="projects">
-      <h2 className="font-bold uppercase">
+      <h2 className="font-bold uppercase mb-6">
         LET'S WORK <span className="text-[#626166]">TOGETHER</span>
-          </h2>
-          <div className="formWrap">
-           <form action="#" class="space-y-8">
+      </h2>
+
+      <div className="formWrap">
+        <form ref={form} onSubmit={sendEmail} className="space-y-6">
           <div>
-              <label for="email" class="block mb-2 text-sm font-medium dark:text-gray-300">Your email</label>
-              <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required/>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium">
+              Your Email
+            </label>
+            <input
+              type="email"
+              name="user_email"
+              id="email"
+              placeholder="you@example.com"
+              required
+              className="w-full p-2.5 text-sm rounded-lg border shadow-sm"
+            />
           </div>
+
           <div>
-              <label for="subject" class="block mb-2 text-sm font-medium dark:text-gray-300">Subject</label>
-              <input type="text" id="subject" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Let us know how we can help you" required/>
+            <label htmlFor="subject" className="block mb-2 text-sm font-medium">
+              Subject
+            </label>
+            <input
+              type="text"
+              name="subject"
+              id="subject"
+              placeholder="What would you like to discuss?"
+              required
+              className="w-full p-3 text-sm rounded-lg border shadow-sm"
+            />
           </div>
-          <div class="sm:col-span-2">
-              <label for="message" class="block mb-2 text-sm font-medium  dark:text-gray-400">Your message</label>
-              <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
+
+          <div>
+            <label htmlFor="message" className="block mb-2 text-sm font-medium">
+              Message
+            </label>
+            <textarea
+              name="message"
+              id="message"
+              rows="5"
+              placeholder="Tell me a bit about your project..."
+              className="w-full p-3 text-sm rounded-lg border shadow-sm"
+            ></textarea>
           </div>
-          <button type="submit" class="w-full py-3 px-5 text-center bg-orange text-white rounded-lg focus:ring-2 focus:ring-primary-300 cursor-pointer">Send message</button>
-      </form>
-          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 px-5 text-center bg-orange text-white font-medium rounded-lg hover:bg-orange-600"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
     </section>
   );
 }
