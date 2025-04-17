@@ -1,28 +1,48 @@
-import React, { useRef } from "react";
-// import emailjs from "@emailjs/browser";
+import React, { useRef, useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function ContactUs() {
   const form = useRef();
+  const [formData, setFormData] = useState({
+    user_email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  // Check if all fields are filled
+  useEffect(() => {
+    const { user_email, subject, message } = formData;
+    setIsFormValid(user_email && subject && message);
+  }, [formData]);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-    // emailjs
-    //   .sendForm(
-    //     "your_service_id", // Replace with your EmailJS service ID
-    //     "your_template_id", // Replace with your EmailJS template ID
-    //     form.current,
-    //     "your_public_key" // Replace with your EmailJS public key
-    //   )
-    //   .then(
-    //     (result) => {
-    //       alert("Message sent successfully!");
-    //       form.current.reset();
-    //     },
-    //     (error) => {
-    //       alert("Failed to send message, please try again.");
-    //     }
-    //   );
+    emailjs
+      .sendForm(
+        "service_dib7m3q",
+        "template_bex6h4f",
+        form.current,
+        "nvW12k7AKCi_-2oCJ"
+      )
+      .then(
+        (result) => {
+          alert("Message sent successfully!");
+          setFormData({ user_email: "", subject: "", message: "" });
+          form.current.reset();
+        },
+        (error) => {
+          alert("Failed to send message, please try again.");
+        }
+      )
+      .finally(() => setIsSubmitting(false));
   };
 
   return (
@@ -43,6 +63,8 @@ export default function ContactUs() {
               id="email"
               placeholder="you@example.com"
               required
+              value={formData.user_email}
+              onChange={handleChange}
               className="w-full p-2.5 text-sm rounded-lg border shadow-sm"
             />
           </div>
@@ -57,6 +79,8 @@ export default function ContactUs() {
               id="subject"
               placeholder="What would you like to discuss?"
               required
+              value={formData.subject}
+              onChange={handleChange}
               className="w-full p-3 text-sm rounded-lg border shadow-sm"
             />
           </div>
@@ -70,15 +94,23 @@ export default function ContactUs() {
               id="message"
               rows="5"
               placeholder="Tell me a bit about your project..."
+              required
+              value={formData.message}
+              onChange={handleChange}
               className="w-full p-3 text-sm rounded-lg border shadow-sm"
             ></textarea>
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 px-5 text-center bg-orange text-white font-medium rounded-lg hover:bg-orange-600"
+            disabled={!isFormValid || isSubmitting}
+            className={`w-full py-3 px-5 text-center rounded-lg font-medium text-white transition duration-200 ${
+              isFormValid && !isSubmitting
+                ? "bg-orange hover:bg-orange-600 cursor-pointer"
+                : "bg-gray-400 cursor-not-allowed"
+            }`}
           >
-            Send Message
+            {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </form>
       </div>
