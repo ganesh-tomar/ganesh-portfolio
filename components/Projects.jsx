@@ -22,12 +22,17 @@ const projectsData = [
 export default function Projects() {
   return (
     <section className="projects">
-      <h2 className="font-bold uppercase">
+      <h2 data-aos="fade-up" className="font-bold uppercase">
         RECENT <span className="text-[#626166]">PROJECTS</span>
       </h2>
       <div className="wapper mt-[50px]">
         {projectsData.map((project, index) => (
-          <div key={index} className="projectCard flex items-center mb-[30px]">
+          <div
+            data-aos-delay={100 * (index + 1)}
+            data-aos="fade-up"
+            key={index}
+            className="projectCard flex items-center mb-[30px]"
+          >
             <div className="imageWrap max-w-[130px] max-h-[130px] w-full h-full text-[0] overflow-hidden rounded-lg">
               <Image
                 width={500}

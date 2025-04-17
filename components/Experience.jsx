@@ -21,12 +21,17 @@ export default function Experience() {
 
   return (
     <section className="experience">
-      <h2 className="font-bold uppercase">
+      <h2 data-aos="fade-up" className="font-bold uppercase">
         3+ Years of <span className="text-[#626166]">Experience</span>
       </h2>
       <div className="wapper mt-[50px]">
         {experienceData.map((item, index) => (
-          <div key={index} className="experienceCard mb-[30px]">
+          <div
+            data-aos-delay={100 * (index + 1)}
+            data-aos="fade-up"
+            key={index}
+            className="experienceCard mb-[30px]"
+          >
             <div className="contentWrap">
               <h5>{item.company}</h5>
               <p className="small mt-[2px]">{item.description}</p>

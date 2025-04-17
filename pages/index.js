@@ -6,6 +6,7 @@ import Tools from "@/components/Tools";
 import ContactUs from "@/components/ContactUs";
 import Image from "next/image";
 
+
 export default function Index() {
   return (
     <>
@@ -15,7 +16,10 @@ export default function Index() {
             <div className="flex flex-wrap justify-between gap-10">
               {/* Left Content - Profile Card */}
               <div className="leftContent w-[30%]">
-                <div className="stickyCard sticky bg-white  top-[50px] px-[20px] py-[30px] shadow-lg text-center rounded-lg">
+                <div
+                  data-aos="fade-up"
+                  className="stickyCard sticky bg-white  top-[50px] px-[20px] py-[30px] shadow-lg text-center rounded-lg"
+                >
                   <div className="max-w-[240px] max-h-[284px] w-full h-full rounded-lg overflow-hidden mx-auto mb-[20px]">
                     <Image
                       width={1000}

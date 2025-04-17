@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import useCountUp from "../hooks/useCountUp";
 
 export default function Banner() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
   const stats = [
-    { value: "+3", label: "Years of Experience" },
-    { value: "+46", label: "Projects Completed" },
-    { value: "+20", label: "Worldwide Clients" },
+    { value: 3, label: "Years of Experience" },
+    { value: 46, label: "Projects Completed" },
+    { value: 20, label: "Worldwide Clients" },
   ];
+
+  const animatedCounts = stats.map((stat) =>
+    useCountUp(isVisible ? stat.value : 0, 0, 2000)
+  );
 
   const highlights = [
     {
@@ -54,20 +62,42 @@ export default function Banner() {
     },
   ];
 
+  // Detect if stats section is visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="banner no-padding-top">
-      <h1 className="font-bold uppercase">
+    <section ref={sectionRef} className="banner no-padding-top">
+      <h1 data-aos="fade-up" className="font-bold uppercase">
         Web <span className="text-[#626166]">Developer</span>
       </h1>
-      <p className="mt-[10px] text-[#626166] max-w-[500px]">
+      <p
+        data-aos-delay="300"
+        data-aos="fade-up"
+        className="mt-[10px] text-[#626166] max-w-[500px]"
+      >
         I build clean, high-performing websites and apps focused on user
         experience, speed, and modern aesthetics.
       </p>
 
-      <div className="col-three-wrap w-[100%+20px] flex ml-[-10px] mt-[50px]">
+      <div
+        data-aos-delay="600"
+        data-aos="fade-up"
+        className="col-three-wrap w-[100%+20px] flex ml-[-10px] mt-[50px]"
+      >
         {stats.map((stat, index) => (
           <div key={index} className="col-three w-[25%] mx-[10px]">
-            <span className="h2">{stat.value}</span>
+            <span className="h2">{animatedCounts[index]}+</span>
             <p className="small text-gray max-w-[120px]">{stat.label}</p>
           </div>
         ))}
@@ -77,6 +107,8 @@ export default function Banner() {
         {highlights.map((item, index) => (
           <div
             key={index}
+            data-aos-delay={400 * (index + 3)}
+            data-aos="fade-up"
             className={`col-two w-[calc(50%-20px)] mx-[10px] ${item.bg} py-[30px] px-[20px] rounded-lg min-h-[240px]`}
           >
             <div className="icon mb-[20px]">{item.icon}</div>

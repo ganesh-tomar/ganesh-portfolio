@@ -28,16 +28,26 @@ export default function Tools() {
       description: "Programming language",
       logo: "/javascript_logo.png",
     },
+    {
+      name: "GSAP",
+      description: "Animation platform",
+      logo: "/gsap_logo.png",
+    },
   ];
 
   return (
     <section className="tools">
-      <h2 className="font-bold uppercase">
+      <h2 data-aos="fade-up" className="font-bold uppercase">
         PREMIUM <span className="text-[#626166]">TOOLS</span>
       </h2>
       <div className="wapper flex flex-wrap mt-[50px]">
         {tools.map((tool, index) => (
-          <div key={index} className="toolCard w-1/2 flex mb-[40px]">
+          <div
+            data-aos-delay={100 + (index * 300)}
+            data-aos="fade-up"
+            key={index}
+            className="toolCard w-1/2 flex mb-[40px]"
+          >
             <div className="imageWrap max-w-[60px] max-h-[60px] w-full h-full text-[0] overflow-hidden rounded-lg">
               <Image
                 src={tool.logo}

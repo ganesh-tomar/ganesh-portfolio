@@ -47,12 +47,18 @@ export default function ContactUs() {
 
   return (
     <section className="projects">
-      <h2 className="font-bold uppercase mb-6">
+      <h2 data-aos="fade-up" className="font-bold uppercase mb-6">
         LET'S WORK <span className="text-[#626166]">TOGETHER</span>
       </h2>
 
       <div className="formWrap">
-        <form ref={form} onSubmit={sendEmail} className="space-y-6">
+        <form
+          data-aos-delay={300}
+          data-aos="fade-up"
+          ref={form}
+          onSubmit={sendEmail}
+          className="space-y-6"
+        >
           <div>
             <label htmlFor="email" className="block mb-2 text-sm font-medium">
               Your Email
